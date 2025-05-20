@@ -97,9 +97,9 @@ h4 {
    Header Section
 ================ */
 header {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; */
   background-color: var(--primary-color);
   color: var(--primary-font-color);
   height: 96px;
@@ -112,7 +112,18 @@ header {
 
 .header-name-div {
   display: flex;
-  align-items: center;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.add-task-btn {
+    background-color: #635FC7;
+    color: white;
+    border: none;
+    width: 164px;
+    height: 48px;
+    font-size: 15px;
+    border-radius:  100px 100px 100px;
 }
 
 .logo-mobile {
