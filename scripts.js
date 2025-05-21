@@ -58,6 +58,7 @@ function clearExistingTasks() {
 /**
  * Renders all tasks from initial data to the UI.
  * Groups tasks by status and appends them to their respective columns.
+ * Updates column headers
  * @param {Array<Object>} tasks - Array of task objects.
  */
 function renderTasks(tasks) {
@@ -70,6 +71,19 @@ function renderTasks(tasks) {
   });
 }
 
+function updateColumnHeaders(tasks) {
+  const statusCounts = {
+    todo: 0,
+    doing: 0,
+    done: 0
+  };
+
+  tasks.forEach(task => statusCounts[task.status]++);
+
+  document.getElementById("toDoText").textContent = `TODO (${statusCounts.todo})`;
+  document.getElementById("doingText").textContent = `DOING (${statusCounts.doing})`;
+  document.getElementById("doneText").textContent = `DONE (${statusCounts.done})`;
+}
 /**
  * Opens the modal dialog with pre-filled task details.
  * @param {Object} task - The task object to display in the modal.
@@ -98,6 +112,35 @@ function setupModalCloseHandler() {
     modal.close();
   });
 }
+
+/**
+ * function to handle newly added tasks
+ */
+document.getElementById("new-task-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const newTitle = document.getElementById("new-task-title").value;
+  const newDescription = document.getElementById("new-task-desc").value;
+  const newStatus = document.getElementById("new-task-status").values;
+
+
+  const newTask = {
+    id: Date.now(),
+    newTitle, 
+    newDescription,
+    newStatus 
+  };
+
+
+const container = getTaskContainerByStatus(newStatus);
+if (container) {
+  const taskElement = createTaskElement(newTask);
+  container.appendChild(taskElement)
+}
+
+document.getElementById("new-task-form").reset();
+document.getElementById("new-task-modal").style.display = "none";
+});
 
 /**
  * Initializes the task board and modal handlers.
