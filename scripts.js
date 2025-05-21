@@ -21,6 +21,21 @@ function createTaskElement(task) {
   return taskDiv;
 }
 
+
+// Opening the new task modal
+
+const openNewTaskModal = document.getElementById("add-task-btn");
+const newTaskModal = document.getElementById("new-task-modal");
+const closeNewTaskModal = document.getElementById("new-close-modal-btn")
+
+openNewTaskModal.addEventListener("click", () => {
+  newTaskModal.style.display = "block";
+});
+
+closeNewTaskModal.addEventListener("click", () => {
+  newTaskModal.style.display = "none";
+});
+
 /**
  * Finds the task container element based on task status.
  * @param {string} status - The task status ('todo', 'doing', or 'done').

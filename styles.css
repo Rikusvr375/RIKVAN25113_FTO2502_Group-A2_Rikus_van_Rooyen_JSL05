@@ -115,7 +115,7 @@ header {
   align-items: center;
 }
 
-.add-task-btn {
+#add-task-btn {
     background-color: #635FC7;
     color: white;
     border: none;
@@ -320,6 +320,8 @@ dialog {
 }
 
 #new-task-modal {
+  display: none; 
+  position: fixed;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -40%);
@@ -333,9 +335,43 @@ dialog {
   /*font-family: "Plus Jakarta Sans", sans-serif;*/
 }
 
+.new-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
 
+.new-close-btn {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #ea5555;
+  transition: transform 0.2s ease-in-out, font-weight 0.2s ease-in-out;
+  transition-delay: 0.1s; /* Delay before scaling */
+}
 
+.new-close-btn:hover {
+  transform: scale(1.15);
+  font-weight: 600;
+}
 
+.new-close-btn:focus {
+  outline: none;
+}
+
+.create-task-btn {
+  background-color: #635FC7;
+  border: none;
+  font-size: 13px;
+  color: #ffffff;
+  margin-top: 30px;
+  width: 425px;
+  height: 40px;
+  border-radius:  100px 100px 100px;
+}
 
 /* Form elements */
 form label {
@@ -465,11 +501,11 @@ form select {
   .header-board-name {
     display: none;
   }
-  .add-task-btn span {
+  #add-task-btn span {
     display: none;
   }
   
-  .add-task-btn {
+  #add-task-btn {
     width: 33px;
     height: 33px;
     border-radius: 50%;
