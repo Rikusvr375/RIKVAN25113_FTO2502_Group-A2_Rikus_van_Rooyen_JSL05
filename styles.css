@@ -97,13 +97,13 @@ h4 {
    Header Section
 ================ */
 header {
-  /* display: flex;
+  display: flex;
   align-items: center;
-  justify-content: space-between; */
+  justify-content: space-between;
   background-color: var(--primary-color);
   color: var(--primary-font-color);
   height: 96px;
-  padding: 0 35px 0 30px;
+  padding: 35px 35px 35px 30px;
   border-bottom: 1px solid #e4ebfa;
   width: 100%;
   font-size: 1.875rem;
@@ -112,8 +112,7 @@ header {
 
 .header-name-div {
   display: flex;
-  align-items: end;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .add-task-btn {
@@ -245,7 +244,8 @@ dialog {
   left: 50%;
   transform: translate(-50%, -40%);
   border-radius: 8px;
-  width: 90%;
+  width: 479px;
+  height: 479px;
   max-width: 600px;
   padding: 24px;
   background-color: #fff;
@@ -285,6 +285,57 @@ dialog {
 .close-btn:focus {
   outline: none;
 }
+
+.task-btns {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+}
+
+.save-changes-btn {
+  background-color: #635FC7;
+  border: none;
+  font-size: 13px;
+  color: #ffffff;
+  width: 200px;
+  height: 40px;
+  border-radius:  100px 100px 100px;
+}
+
+.delete-task-btn {
+  background-color: #EA5555;
+  border: none;
+  font-size: 13px;
+  color: #ffffff;
+  width: 200px;
+  height: 40px;
+  border-radius:  100px 100px 100px; 
+}
+
+
+/* New task modal */
+
+#new-task-modal::backdrop {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#new-task-modal {
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  border-radius: 8px;
+  width: 479px;
+  height: 479px;
+  max-width: 600px;
+  padding: 24px;
+  background-color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /*font-family: "Plus Jakarta Sans", sans-serif;*/
+}
+
+
+
+
 
 /* Form elements */
 form label {
@@ -409,5 +460,37 @@ form select {
 
   .column-div {
     padding: 24px;
+  }
+
+  .header-board-name {
+    display: none;
+  }
+  .add-task-btn span {
+    display: none;
+  }
+  
+  .add-task-btn {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    margin-right: 18px;
+  }
+
+  #task-modal {
+    width: 343px;
+    height: 532px;
+  }
+
+  .task-btns {
+    display: grid;
+  }
+
+  .save-changes-btn {
+    width: 300px;
+    margin-bottom: 15px;
+  }
+
+  .delete-task-btn {
+    width: 300px;
   }
 }

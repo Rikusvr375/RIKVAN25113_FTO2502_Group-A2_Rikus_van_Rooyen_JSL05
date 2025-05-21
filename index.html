@@ -40,15 +40,13 @@
             alt="logo-mobile"
             class="logo-mobile"
           />
-          
           <h2 class="header-board-name" id="header-board-name">
             Launch Career
           </h2>
-          <button class="add-task-btn">
-            +Add New task
-          </button>
-          
         </div>
+        <button class="add-task-btn">
+            +<span>Add New task</span>
+          </button>
       </header>
 
       <div class="container">
@@ -105,7 +103,18 @@
           <option value="doing">doing</option>
           <option value="done">done</option>
         </select>
+        <div class="task-btns">
+          <button class="save-changes-btn">
+            Save Changes
+          </button>
+          <button class="delete-task-btn">
+            Delete Task
+          </button>
+        </div>
       </form>
+    </dialog>
+    <dialog id="new-task-modal">
+      
     </dialog>
   </body>
 </html>
