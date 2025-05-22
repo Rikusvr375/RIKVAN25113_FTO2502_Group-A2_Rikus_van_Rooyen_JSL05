@@ -1,5 +1,6 @@
 import { initialTasks } from "./initialData.js";
 
+let tasks = JSON.parse(localStorage.getItem("kanbanTasks")) || initialTasks;
 /**
  * Creates a single task DOM element.
  * @param {Object} task - Task data object.
@@ -27,13 +28,20 @@ function createTaskElement(task) {
 const openNewTaskModal = document.getElementById("add-task-btn");
 const newTaskModal = document.getElementById("new-task-modal");
 const closeNewTaskModal = document.getElementById("new-close-modal-btn")
+const customBackdrop = document.getElementById("custom-backdrop")
+
+document.getElementById("new-task-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+});
 
 openNewTaskModal.addEventListener("click", () => {
   newTaskModal.style.display = "block";
+  customBackdrop.style.display = "block";
 });
 
 closeNewTaskModal.addEventListener("click", () => {
   newTaskModal.style.display = "none";
+  customBackdrop.style.display = "none";
 });
 
 /**
@@ -102,6 +110,13 @@ function openTaskModal(task) {
 }
 
 /**
+ * Deletes existing data when delete task button is clicked
+ */
+
+const deleteTaskBtn = document.getElementById("delete-task-btn");
+
+
+/**
  * Sets up modal close behavior.
  */
 function setupModalCloseHandler() {
@@ -121,14 +136,14 @@ document.getElementById("new-task-form").addEventListener("submit", (e) => {
 
   const newTitle = document.getElementById("new-task-title").value;
   const newDescription = document.getElementById("new-task-desc").value;
-  const newStatus = document.getElementById("new-task-status").values;
+  const newStatus = document.getElementById("new-task-status").value;
 
 
   const newTask = {
     id: Date.now(),
-    newTitle, 
-    newDescription,
-    newStatus 
+    title: newTitle, 
+    description: newDescription,
+    status: newStatus 
   };
 
 
@@ -138,8 +153,20 @@ if (container) {
   container.appendChild(taskElement)
 }
 
-document.getElementById("new-task-form").reset();
-document.getElementById("new-task-modal").style.display = "none";
+/** 
+*  Update tasks array and save to localStorage
+*/
+  tasks.push(newTask);
+  localStorage.setItem("kanbanTasks", JSON.stringify(tasks));
+
+/**
+ * update column headers 
+ */  
+updateColumnHeaders(tasks);
+
+  document.getElementById("new-task-form").reset();
+  newTaskModal.style.display = "none";
+  customBackdrop.style.display = "none";
 });
 
 /**
@@ -147,8 +174,9 @@ document.getElementById("new-task-modal").style.display = "none";
  */
 function initTaskBoard() {
   clearExistingTasks();
-  renderTasks(initialTasks);
+  renderTasks(tasks);
   setupModalCloseHandler();
+  updateColumnHeaders(tasks);
 }
 
 // Wait until DOM is fully loaded
