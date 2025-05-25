@@ -119,6 +119,7 @@ header {
 #add-task-btn {
     background-color: #635FC7;
     color: white;
+    cursor: pointer;
     border: none;
     width: 164px;
     height: 48px;
